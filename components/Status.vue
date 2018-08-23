@@ -22,21 +22,21 @@ export default {
 <style scoped>
 article.status {
   border: 1px solid;
-  width: 1000px;
-  height: 50px;
+  width: 800px;
+  height: 32px;
   display: flex;
 
   text-align: left;
 }
 
 img.avatar {
-  width: 48px;
-  height: 48px;
+  width: 24px;
+  height: 24px;
   margin: auto 5px;
 }
 
 div.content {
-  width: 930px;
+  width: 750px;
 
   white-space: nowrap;
   overflow: hidden;

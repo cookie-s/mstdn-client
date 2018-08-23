@@ -1,21 +1,25 @@
 <template>
-  <section class="container">
-    <div>
-      <app-logo />
+  <div class="container">
+    <app-logo />
+      <div class="content">
         <timeline v-bind:statuses="statuses" />
-    </div>
-  </section>
+        <status-detail v-if="statuses[0]" v-bind="statuses[0]" />
+      </div>
+  </div>
 </template>
 
 <script>
+import WebSocket from 'isomorphic-ws';
+
 import AppLogo from '~/components/AppLogo.vue'
 import Timeline from '~/components/TL.vue'
-const WebSocket = require('isomorphic-ws');
+import StatusDetail from '~/components/TootDetail.vue'
 
 export default {
   components: {
     AppLogo,
     Timeline,
+    StatusDetail,
   },
   data() {
     return {
@@ -52,8 +56,15 @@ export default {
 .container {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  font: small/1.2 sans-serif;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
 }
 </style>
