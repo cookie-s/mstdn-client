@@ -13,7 +13,7 @@ import WebSocket from 'isomorphic-ws';
 
 import AppLogo from '~/components/AppLogo.vue'
 import Timeline from '~/components/TL.vue'
-import StatusDetail from '~/components/TootDetail.vue'
+import StatusDetail from '~/components/StatusDetail.vue'
 
 export default {
   components: {
@@ -29,7 +29,8 @@ export default {
     };
   },
   created() {
-    const domain = 'social.mikutter.hachune.net';
+    //const domain = 'social.mikutter.hachune.net';
+    const domain = 'mstdn.jp';
     const token = '';
     const publicStreamURL = `wss://${domain}/api/v1/streaming/?stream=public&access_token=${token}`;
     const publicStream = new WebSocket(publicStreamURL);

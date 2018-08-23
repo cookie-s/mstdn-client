@@ -5,14 +5,24 @@
       <div class="account">
         <span><a v-bind:href="account.url">{{ account.acct }}</a></span> / <span>{{ account.display_name }}</span>
       </div>
-      <div class="content" v-html="content" />
+        <div class="content">{{ contentText }}</div>
       </div>
   </article>
 </template>
 
 <script>
+import textversion from 'textversionjs';
+
 export default {
   props: ['id', 'account', 'content'],
+  computed: {
+    contentText() {
+      return textversion(this.content, {
+        linkProcess(href, text) { return text; },
+        imgProcess(src, alt) { return '[img]'; },
+      });
+    },
+  },
   data() {
     return {};
   },
