@@ -2,28 +2,25 @@
   <section class="container">
     <div>
       <app-logo />
-        <div class="statuses" v-for="status in statuses" :key="status.id">
-          <status
-                              v-bind="status"
-                              />
-        </div>
+        <timeline v-bind:statuses="statuses" />
     </div>
   </section>
 </template>
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
-import Status from '~/components/Status.vue'
+import Timeline from '~/components/TL.vue'
 const WebSocket = require('isomorphic-ws');
 
 export default {
   components: {
     AppLogo,
-    Status,
+    Timeline,
   },
   data() {
     return {
       size: 20,
+      focus: '',
       statuses: [],
     };
   },
@@ -60,4 +57,3 @@ export default {
   text-align: center;
 }
 </style>
-

@@ -1,5 +1,5 @@
 <template>
-  <article class="status">
+  <article class="status" v-bind:class="id" tabindex="0">
     <img class="avatar" v-bind:src="account.avatar" />
     <div>
       <div class="account">
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  props: ['account', 'content'],
+  props: ['id', 'account', 'content'],
   data() {
     return {};
   },
