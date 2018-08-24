@@ -10,6 +10,7 @@
 
 <script>
 import WebSocket from 'isomorphic-ws';
+import axios from 'axios';
 
 import AppLogo from '~/components/AppLogo.vue'
 import Timeline from '~/components/TL.vue'
@@ -28,10 +29,15 @@ export default {
       statuses: [],
     };
   },
-  created() {
+  async created() {
     //const domain = 'social.mikutter.hachune.net';
     const domain = 'mstdn.jp';
     const token = '';
+
+    const publicTimelineURL = `https://${domain}/api/v1/timelines/public`;
+    const resp = await axios.get(publicTimelineURL);
+    this.statuses = resp.data;
+
     const publicStreamURL = `wss://${domain}/api/v1/streaming/?stream=public&access_token=${token}`;
     const publicStream = new WebSocket(publicStreamURL);
     publicStream.onmessage = (e) => {
