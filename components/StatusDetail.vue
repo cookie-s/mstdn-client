@@ -3,13 +3,11 @@
     <div class="account">
       <img class="avatar" v-bind:src="account.avatar" />
       <div class="name">
-        <div class="acct"><a v-bind:href="account.url">{{ account.acct }}</a></div>
+        <div class="acct"><a target="_blank" v-bind:href="account.url">{{ account.acct }}</a></div>
         <div class="display_name">{{ account.display_name }}</div>
       </div>
     </div>
-    <div>
-      <div class="content" v-html="content" />
-      </div>
+    <div class="status-content" v-html="content" />
   </article>
 </template>
 
@@ -19,27 +17,41 @@ export default {
   data() {
     return {};
   },
+  beforeUpdate() {
+    console.log(this.$el.querySelector('div.status-content a'));
+  },
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 article.status-detail {
+  width: 600px;
+  height: 200px;
   border: 1px solid;
-  width: 300px;
-  align-items: left;
-  text-align: left;
-}
 
-img.avatar {
-  width: 64px;
-  height: 64px;
-}
-
-div.account {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+
+  text-align: left;
+
+  & .account {
+    display: flex;
+    flex-direction: row;
+
+    & img.avatar {
+      width: 64px;
+      height: 64px;
+    }
+
+    & div.name {
+      display: block;
+    }
+  }
+
+  div.status-content {
+    flex: 1;
+    overflow: scroll;
+  }
 }
-div.name {
-  display: block;
-}
+
 </style>

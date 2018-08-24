@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="timeline">
     <div class="statuses" v-for="status in statuses" :key="status.id">
       <status v-bind="status" />
     </div>
@@ -17,5 +17,9 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.timeline {
+  display: block;
+  flex: 1;
+}
 </style>

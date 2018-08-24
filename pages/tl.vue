@@ -41,8 +41,7 @@ export default {
           {
             const payload = JSON.parse(evt.payload);
             this.statuses.unshift(payload);
-            //this.statuses.splice(this.size);
-            console.log(payload);
+            this.statuses.splice(this.size);
             break;
           }
         default:
@@ -55,6 +54,7 @@ export default {
 
 <style>
 .container {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -65,6 +65,9 @@ export default {
 }
 
 .content {
+  width: 100%;
+  flex: 1;
+
   display: flex;
   flex-direction: row;
 }

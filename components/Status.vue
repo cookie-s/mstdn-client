@@ -1,12 +1,12 @@
 <template>
   <article class="status" v-bind:class="id" tabindex="0">
     <img class="avatar" v-bind:src="account.avatar" />
-    <div>
+    <div class="status-right">
       <div class="account">
-        <span><a v-bind:href="account.url">{{ account.acct }}</a></span> / <span>{{ account.display_name }}</span>
+        <span><a target="_blank" v-bind:href="account.url">{{ account.acct }}</a></span> / <span>{{ account.display_name }}</span>
       </div>
-        <div class="content">{{ contentText }}</div>
-      </div>
+      <div class="content">{{ contentText }}</div>
+    </div>
   </article>
 </template>
 
@@ -29,12 +29,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 article.status {
   border: 1px solid;
-  width: 800px;
   height: 32px;
   display: flex;
+  flex-direction: row;
 
   text-align: left;
 }
@@ -45,21 +45,16 @@ img.avatar {
   margin: auto 5px;
 }
 
+.status-right {
+  flex: 1;
+}
+
 div.content {
-  width: 750px;
-
-  white-space: nowrap;
+  height: 1em;
+  /*white-space: nowrap;*/
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-div.content >>> * {
-  display: inline;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
-div.content >>> br {
-  display: none;
-}
 </style>
