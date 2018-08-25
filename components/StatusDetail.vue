@@ -18,7 +18,7 @@ export default {
     return {};
   },
   beforeUpdate() {
-    console.log(this.$el.querySelector('div.status-content a'));
+    this.$el.querySelector('div.status-content a');
   },
 };
 </script>

@@ -2,16 +2,13 @@
   <div class="container">
     <app-logo />
       <div class="content">
-        <timeline v-bind:statuses="statuses" />
-        <status-detail v-if="statuses[0]" v-bind="statuses[0]" />
+        <timeline @focus="onUpdateFocus" domain="mstdn.jp" stream="public" />
+        <status-detail v-if="focusStatus" v-bind="focusStatus" />
       </div>
   </div>
 </template>
 
 <script>
-import WebSocket from 'isomorphic-ws';
-import axios from 'axios';
-
 import AppLogo from '~/components/AppLogo.vue'
 import Timeline from '~/components/TL.vue'
 import StatusDetail from '~/components/StatusDetail.vue'
@@ -24,36 +21,13 @@ export default {
   },
   data() {
     return {
-      size: 20,
-      focus: '',
-      statuses: [],
+      focusStatus: null,
     };
   },
-  async created() {
-    //const domain = 'social.mikutter.hachune.net';
-    const domain = 'mstdn.jp';
-    const token = '';
-
-    const publicTimelineURL = `https://${domain}/api/v1/timelines/public`;
-    const resp = await axios.get(publicTimelineURL);
-    this.statuses = resp.data;
-
-    const publicStreamURL = `wss://${domain}/api/v1/streaming/?stream=public&access_token=${token}`;
-    const publicStream = new WebSocket(publicStreamURL);
-    publicStream.onmessage = (e) => {
-      const evt = JSON.parse(e.data);
-      switch(evt.event) {
-        case 'update':
-          {
-            const payload = JSON.parse(evt.payload);
-            this.statuses.unshift(payload);
-            this.statuses.splice(this.size);
-            break;
-          }
-        default:
-          console.log(evt.event);
-      }
-    }
+  methods: {
+    onUpdateFocus(status) {
+      this.focusStatus = status;
+    },
   },
 }
 </script>

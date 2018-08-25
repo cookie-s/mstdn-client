@@ -1,9 +1,9 @@
 <template>
-  <article class="status" v-bind:class="id" tabindex="0">
+  <article class="status" v-bind:class="id" @focus="$emit('focus', id)" tabindex="0">
     <img class="avatar" v-bind:src="account.avatar" />
     <div class="status-right">
       <div class="account">
-        <span><a target="_blank" v-bind:href="account.url">{{ account.acct }}</a></span> / <span>{{ account.display_name }}</span>
+        <span>{{ account.acct }}</span> / <span>{{ account.display_name }}</span>
       </div>
       <div class="content">{{ contentText }}</div>
     </div>
