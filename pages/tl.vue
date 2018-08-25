@@ -2,7 +2,7 @@
   <div class="container">
     <app-logo />
       <div class="content">
-        <timeline @focus="onUpdateFocus" domain="mstdn.jp" stream="public" />
+        <timeline class="timeline" @focus="onUpdateFocus" domain="mstdn.jp" stream="public" />
         <status-detail v-if="focusStatus" v-bind="focusStatus" />
       </div>
   </div>
@@ -32,13 +32,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .container {
   width: 100%;
+  height: 100vh;
   min-height: 100vh;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
+
   align-items: center;
   text-align: center;
   font: small/1.2 sans-serif;
@@ -50,5 +53,10 @@ export default {
 
   display: flex;
   flex-direction: row;
+}
+
+.timeline {
+  border: 1px solid;
+  overflow-y: scroll;
 }
 </style>
