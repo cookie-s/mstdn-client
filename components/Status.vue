@@ -1,5 +1,5 @@
 <template>
-  <article class="status" :class="id" @focus="$emit('focus', id)" tabindex="0">
+  <article class="status" :class="classID" @focus="$emit('focus', id)" tabindex="0">
     <img class="avatar" :src="account.avatar" />
     <div class="status-right">
       <div class="account">
@@ -16,6 +16,9 @@ import textversion from 'textversionjs';
 export default {
   props: ['id', 'account', 'content'],
   computed: {
+    classID() {
+      return `status-${this.id}`;
+    },
     contentText() {
       return textversion(this.content, {
         linkProcess(href, text) { return text; },

@@ -1,5 +1,5 @@
 <template>
-  <div class="timeline">
+  <div @keydown.74="down" @keydown.75="up" class="timeline">
     <div class="statuses" v-for="status in statuses" :key="status.id">
       <status v-bind="status" @focus="onUpdateFocus" />
     </div>
@@ -18,8 +18,10 @@ export default {
   props: ['domain', 'stream'],
   data() {
     return {
-      size: 20,
+      latest: null,
       statusesMap: OrderedMap(),
+      size: 20,
+      focus: '',
     };
   },
   computed: {
@@ -29,13 +31,43 @@ export default {
   },
   methods: {
     onUpdateFocus(id) {
+      this.focus = id;
+
       const status = this.statusesMap.get(id);
       if(status) {
         this.$emit('focus', status);
       }
     },
     insertStatus(payload) {
+      const id = payload.id;
+      payload.prev = '';
+      payload.next = this.latest;
+      {
+        const latest = this.statusesMap.get(this.latest);
+        if(latest) {
+          latest.prev = id;
+        }
+      }
+      this.latest = payload.id;
       this.statusesMap = this.statusesMap.set(payload.id, payload).takeLast(this.size);
+    },
+    up() {
+      const focus = this.statusesMap.get(this.focus);
+      if(focus) {
+        const target = focus.prev;
+        if(target) {
+          this.$el.querySelector(`article.status-${target}`).focus();
+        }
+      }
+    },
+    down() {
+      const focus = this.statusesMap.get(this.focus);
+      if(focus) {
+        const target = focus.next;
+        if(target) {
+          this.$el.querySelector(`article.status-${target}`).focus();
+        }
+      }
     },
   },
   components: {
@@ -46,7 +78,7 @@ export default {
 
     const timelineURL = `https://${this.domain}/api/v1/timelines/${this.stream}`;
     const resp = await axios.get(timelineURL);
-    this.statusesMap = OrderedMap(resp.data.map(e => [e.id, e]));
+    resp.data.forEach(e => this.insertStatus(e));
 
     const streamURL = `wss://${this.domain}/api/v1/streaming/?stream=${this.stream}&access_token=${token}`;
     const stream = new WebSocket(streamURL);
