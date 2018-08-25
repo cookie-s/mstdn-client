@@ -1,8 +1,13 @@
 <template>
-  <div @keydown.74="down" @keydown.75="up" class="timeline">
-    <div class="statuses" v-for="status in statuses" :key="status.id">
-      <status v-bind="status" @focus="onUpdateFocus" />
-    </div>
+  <div class="timeline"
+       @keydown.74="down"
+       @keydown.75="up"
+       @keydown.shift.71="bottom"
+       @keydown.219="replyTo"
+       >
+       <div class="statuses" v-for="status in statuses" :key="status.id">
+         <status v-bind="status" @focus="onUpdateFocus" />
+       </div>
   </div>
 </template>
 
@@ -64,6 +69,19 @@ export default {
       const focus = this.statusesMap.get(this.focus);
       if(focus) {
         const target = focus.next;
+        if(target) {
+          this.$el.querySelector(`article.status-${target}`).focus();
+        }
+      }
+    },
+    bottom() {
+      const target = this.statusesMap.last().id;
+      this.$el.querySelector(`article.status-${target}`).focus();
+    },
+    replyTo() {
+      const focus = this.statusesMap.get(this.focus);
+      if(focus) {
+        const target = focus.in_reply_to_id;
         if(target) {
           this.$el.querySelector(`article.status-${target}`).focus();
         }

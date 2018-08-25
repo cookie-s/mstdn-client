@@ -1,5 +1,5 @@
 <template>
-  <article class="status" :class="classID" @focus="$emit('focus', id)" tabindex="0">
+  <article class="status" :class="classID" @focus="$emit('focus', id)" tabindex="-1">
     <img class="avatar" :src="account.avatar_static" />
     <div class="status-right">
       <div class="account">

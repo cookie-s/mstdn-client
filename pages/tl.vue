@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <app-logo />
+    <app-logo tabindex="0" />
       <div class="content">
         <timeline class="timeline" @focus="onUpdateFocus" domain="mstdn.jp" stream="public" />
-        <status-detail v-if="focusStatus" v-bind="focusStatus" />
+        <status-detail v-if="focusStatus" v-bind="focusStatus" tabindex="-1" />
       </div>
   </div>
 </template>
