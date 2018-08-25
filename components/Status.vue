@@ -40,6 +40,10 @@ article.status {
   flex-direction: row;
 
   text-align: left;
+
+  &:focus {
+    background-color: skyblue;
+  }
 }
 
 img.avatar {
