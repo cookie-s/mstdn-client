@@ -1,6 +1,6 @@
 <template>
-  <article class="status" v-bind:class="id" @focus="$emit('focus', id)" tabindex="0">
-    <img class="avatar" v-bind:src="account.avatar" />
+  <article class="status" :class="id" @focus="$emit('focus', id)" tabindex="0">
+    <img class="avatar" :src="account.avatar" />
     <div class="status-right">
       <div class="account">
         <span>{{ account.acct }}</span> / <span>{{ account.display_name }}</span>

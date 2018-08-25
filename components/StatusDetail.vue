@@ -1,9 +1,9 @@
 <template>
   <article class="status-detail">
     <div class="account">
-      <img class="avatar" v-bind:src="account.avatar" />
+      <img class="avatar" :src="account.avatar" />
       <div class="name">
-        <div class="acct"><a target="_blank" v-bind:href="account.url">{{ account.acct }}</a></div>
+        <div class="acct"><a target="_blank" :href="account.url">{{ account.acct }}</a></div>
         <div class="display_name">{{ account.display_name }}</div>
       </div>
     </div>
