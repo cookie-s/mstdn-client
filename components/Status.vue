@@ -2,8 +2,9 @@
   <article class="status" :class="classID" @focus="$emit('focus', id)" tabindex="-1">
     <img class="avatar" :src="account.avatar_static" />
     <div class="status-right">
-      <div class="account">
+      <div class="upper">
         <span>{{ account.acct }}</span> / <span>{{ account.display_name }}</span>
+        <span v-if="media_attachments.length > 0" style="float:right">[{{ media_attachments.length }}]</span>
       </div>
       <div class="content">{{ contentText }}</div>
     </div>
@@ -14,7 +15,7 @@
 import textversion from 'textversionjs';
 
 export default {
-  props: ['id', 'account', 'content'],
+  props: ['id', 'account', 'content', 'media_attachments'],
   computed: {
     classID() {
       return `status-${this.id}`;

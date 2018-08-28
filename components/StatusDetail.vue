@@ -25,9 +25,8 @@ export default {
 
 <style scoped lang="scss">
 article.status-detail {
-  width: 600px;
-  height: 250px;
   border: 1px solid;
+  height: 50%;
 
   display: flex;
   flex-direction: column;

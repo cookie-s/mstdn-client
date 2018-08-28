@@ -25,7 +25,7 @@ export default {
     return {
       latest: null,
       statusesMap: OrderedMap(),
-      size: 1/0,
+      size: 100,
       focus: '',
     };
   },

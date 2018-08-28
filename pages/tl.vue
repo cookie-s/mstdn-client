@@ -3,7 +3,10 @@
     <app-logo tabindex="0" />
       <div class="content">
         <timeline class="timeline" @focus="onUpdateFocus" domain="mstdn.jp" stream="public" />
-        <status-detail v-if="focusStatus" v-bind="focusStatus" tabindex="-1" />
+        <div class="content-right">
+          <status-detail v-if="focusStatus" v-bind="focusStatus" tabindex="-1" />
+            <media-view v-if="focusStatus" v-bind="focusStatus" tabindex="-1" />
+        </div>
       </div>
   </div>
 </template>
@@ -12,12 +15,14 @@
 import AppLogo from '~/components/AppLogo.vue'
 import Timeline from '~/components/TL.vue'
 import StatusDetail from '~/components/StatusDetail.vue'
+import MediaView from '~/components/MediaView.vue'
 
 export default {
   components: {
     AppLogo,
     Timeline,
     StatusDetail,
+    MediaView,
   },
   data() {
     return {
@@ -32,7 +37,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+* {
+  box-sizing: content-box;
+}
+
 .container {
   width: 100%;
   height: 100vh;
@@ -53,10 +62,16 @@ export default {
 
   display: flex;
   flex-direction: row;
-}
 
-.timeline {
-  border: 1px solid;
-  overflow-y: scroll;
+  & .timeline {
+    border: 1px solid;
+    overflow-y: scroll;
+  }
+
+  & .content-right {
+    width: 600px;
+    height: 100%;
+    border: 1px solid;
+  }
 }
 </style>
