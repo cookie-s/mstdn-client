@@ -64,6 +64,8 @@ export default {
   flex-direction: row;
 
   & .timeline {
+    box-sizing: border-box;
+    max-height: 100vh;
     border: 1px solid;
     overflow-y: scroll;
   }
