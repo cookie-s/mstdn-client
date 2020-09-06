@@ -14,7 +14,6 @@
 <script>
 import axios from 'axios';
 import {OrderedMap} from 'immutable';
-import WebSocket from 'isomorphic-ws';
 
 import Status from '~/components/Status.vue'
 
@@ -92,6 +91,9 @@ export default {
     Status,
   },
   async created() {
+    if(process.server) {
+      return;
+    }
     const token = '';
 
     const timelineURL = `https://${this.domain}/api/v1/timelines/${this.stream}`;
@@ -112,7 +114,7 @@ export default {
         default:
           console.log(evt.event);
       }
-    }
+    };
   },
 }
 </script>
