@@ -16,7 +16,7 @@
     "axios": "^0.18.0",
     "immutable": "^3.8.2",
     "isomorphic-ws": "^4.0.1",
-    "node-sass": "^4.9.3",
+    "node-sass": "^4.13.1",
     "nuxt": "^1.0.0",
     "sass-loader": "^7.1.0",
     "textversionjs": "^1.1.3"
