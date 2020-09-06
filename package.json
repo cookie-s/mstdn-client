@@ -4,6 +4,9 @@
   "description": "Nuxt.js project",
   "author": "cookie-s <cookie-s@users.noreply.github.com>",
   "private": true,
+  "engines": {
+    "node": ">=10.0"
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
