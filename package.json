@@ -17,7 +17,7 @@
     "precommit": "npm run lint"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "immutable": "^3.8.2",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
